@@ -225,6 +225,44 @@
     <proxyencodingoption name="H.264 Preset Ultrafast" extension="mp4" type="av" audiodesc="mp3, 192kb/s, 48000Hz" resize="True" qgroup="qgroup2">
         <profile args="f=mp4 acodec=libmp3lame ac=2 ab=192k ar=48000 vcodec=libx264 preset=ultrafast tune=fastdecode g=30 crf=25"/>
     </proxyencodingoption>
+
+   <!-- ==================  [wr] 2023-10-03 ... try hardcoded gpu encoding  ===============   -->
+    <proxyencodingoption name="H.264 NVENC p2=Faster" extension="mp4" type="av" audiodesc="mp3, 192kb/s, 48000Hz" resize="True" qgroup="qgroup2">
+   <!-- see ffmpeg -h encoder=h264_nvenc  -->
+        <profile args="v=error f=mp4 acodec=libmp3lame ac=2 ab=192k ar=48000 vcodec=h264_nvenc preset=p2 tune=ull g=30 crf=25"/>
+    </proxyencodingoption>
+
+    <proxyencodingoption name="H.264 NVENC fastest" extension="mp4" type="av" audiodesc="mp3, 192kb/s, 48000Hz" resize="True" qgroup="qgroup2">
+        <profile args="f=mp4 acodec=libmp3lame ac=2 ab=192k ar=48000 vcodec=h264_nvenc preset=p1"/>   <!--  pix_fmt=yuv420p  rc=vbr cq=35 -->
+    </proxyencodingoption>
+
+    <proxyencodingoption name="H.264 NVENC fastest cq=28" extension="mp4" type="av" audiodesc="mp3, 192kb/s, 48000Hz" resize="True" qgroup="qgroup2">
+        <profile args="f=mp4 acodec=libmp3lame ac=2 ab=192k ar=48000 vcodec=h264_nvenc preset=p1 rc=vbr cq=28"/>   <!--  pix_fmt=yuv420p  rc=vbr cq=35 -->
+    </proxyencodingoption>
+
+    <proxyencodingoption name="H.264 NVENC fastest cq=32" extension="mp4" type="av" audiodesc="mp3, 192kb/s, 48000Hz" resize="True" qgroup="qgroup2">
+        <profile args="f=mp4 acodec=libmp3lame ac=2 ab=192k ar=48000 vcodec=h264_nvenc preset=p1 rc=vbr cq=32"/>   <!--  pix_fmt=yuv420p  rc=vbr cq=35 -->
+    </proxyencodingoption>
+
+    <proxyencodingoption name="H.264 NVENC fastest cq=35" extension="mp4" type="av" audiodesc="mp3, 192kb/s, 48000Hz" resize="True" qgroup="qgroup2">
+        <profile args="f=mp4 acodec=libmp3lame ac=2 ab=192k ar=48000 vcodec=h264_nvenc preset=p1 rc=vbr cq=35"/>   <!--  pix_fmt=yuv420p  rc=vbr cq=35 -->
+    </proxyencodingoption>
+
+
+    <proxyencodingoption name="NVENC npp scaling" extension="mp4" type="av" audiodesc="mp3, 192kb/s, 48000Hz"  resize="False"   qgroup="qgroup2">
+        <profile args="hwaccel=cuda hwaccel_output_format=cuda vf='scale_npp=960:540' vcodec=h264_nvenc rc=vbr cq=40"/>
+    </proxyencodingoption>
+
+
+
+    <proxyencodingoption name="NVENC cuda fastest" extension="mp4" type="av" audiodesc="mp3, 192kb/s, 48000Hz"  resize="True"   qgroup="qgroup2">
+        <profile args="hwaccel=cuda hwaccel_output_format=cuda vcodec=h264_nvenc preset=p1"/>
+    </proxyencodingoption>
+
+
+
+
+<!-- ============= original below ====================  -->
     <proxyencodingoption name="MPEG-4 Preset Ultrafast" extension="mp4" type="av" audiodesc="mp3, 192kb/s, 48000Hz" resize="True" qgroup="qgroup1">
         <profile args="f=mp4 acodec=libmp3lame ac=2 ab=192k ar=48000 vcodec=mpeg4 preset=ultrafast"/>
     </proxyencodingoption>

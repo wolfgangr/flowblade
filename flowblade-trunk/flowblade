@@ -51,9 +51,16 @@ elif launch_dir == "/app/bin":
 else:
     print ("Running from filesystem...")
     modules_path = launch_dir + "/Flowblade"
+    print ("modules path:", modules_path)
 
 sys.path.insert(0, modules_path)
-
+# [wr 2023-09-29]
+# sys.path.append("/usr/local/lib/python3.7/site-packages/")
+### sys.path.insert(2, "/usr/local/lib/python3.7/site-packages")
+print ("sys.path: ---------------")
+for path in sys.path:
+    print(path)
+print ("-------------------------")
 
 # Check that we have MLT, missing is fatal.
 try:
